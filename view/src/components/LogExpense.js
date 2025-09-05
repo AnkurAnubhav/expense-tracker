@@ -58,8 +58,11 @@ const LogExpense = ({ handleClose, _id, refreshExpenses }) => {
       console.log(key, value);
     }
 
-    if (data.get('essential') === null) {
-      data.set('essential', false);
+    // Handle checkbox - if not checked, it won't be in FormData
+    if (!data.has('essential')) {
+      data.set('essential', 'false');
+    } else {
+      data.set('essential', 'true');
     }
     if (_id) {
       formSetter(data, expense);

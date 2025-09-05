@@ -4,6 +4,27 @@ const path = require('path');
 require('dotenv').config();
 const expenseRoutes = require('./routes/expense');
 
+// Auto-create table on startup
+const initDB = async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS expenses(
+        expense_id SERIAL PRIMARY KEY,
+        title VARCHAR(30) NOT NULL, 
+        price DECIMAL(10, 2) NOT NULL, 
+        category VARCHAR(30) NOT NULL, 
+        essential BOOLEAN NOT NULL, 
+        created_at TIMESTAMPTZ NOT NULL
+      );
+    `);
+    console.log('Database table ready');
+  } catch (err) {
+    console.error('Database error:', err);
+  }
+};
+
+initDB();
+
 // Running express server
 const app = express();
 const port = process.env.PORT || 8000;
