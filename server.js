@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
+
+const pool = require('./models/database');
 const expenseRoutes = require('./routes/expense');
 
 // Auto-create table on startup
