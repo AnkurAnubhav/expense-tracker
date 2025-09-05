@@ -1,10 +1,12 @@
 {
-  "name": "mvc",
+  "name": "expense-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Expense tracking application",
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js --ignore ./view",
+    "build": "cd view && npm install && npm run build",
+    "dev": "nodemon server.js --ignore ./view",
     "lint:check": "eslint ."
   },
   "keywords": [],
