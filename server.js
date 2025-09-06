@@ -13,6 +13,9 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
+// route middlewares
+app.use('/api', expenseRoutes);
+
 // Serve static files from React build
 app.use(express.static(path.join(__dirname, 'view/build')));
 
@@ -21,8 +24,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'view/build/index.html'));
 });
 
-// route middlewares
-app.use('/api', expenseRoutes);
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`App listening at http://localhost:${port}`);
